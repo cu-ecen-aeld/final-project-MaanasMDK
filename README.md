@@ -9,7 +9,7 @@ https://github.com/KhyatiSatta/final-project-KhyatiSatta/wiki/Project-Overview
 https://github.com/users/KhyatiSatta/projects/5
 
 # Application Code Repository
-https://github.com/nihalthirunakarasu/final-project-NihalThirunakarasu
+https://github.com/cu-ecen-aeld/final-project-nihalthirunakarasu
 
 # Kernel Driver Repository
-https://github.com/KhyatiSatta/final-project-KhyatiSatta
+https://github.com/cu-ecen-aeld/final-project-KhyatiSatta
