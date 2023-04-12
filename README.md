@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ECEN 5713 AESD Final Project
 
 This repository contains the Yocto build for the final project.
@@ -13,3 +14,7 @@ https://github.com/cu-ecen-aeld/final-project-nihalthirunakarasu
 
 # Kernel Driver Repository
 https://github.com/cu-ecen-aeld/final-project-KhyatiSatta
+=======
+# yocto-assignments-base
+Base repository for AESD Yocto assignments
+>>>>>>> yocto-assignments-base/master
