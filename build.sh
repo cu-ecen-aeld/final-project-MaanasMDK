@@ -69,5 +69,81 @@ else
 	echo "meta-raspberrypi layer already exists"
 fi
 
+################################################################
+# Description : Adding support for wifi
+# Author : Maanas Makam Dileep Kumar
+# Date : 04/14/23
+################################################################
+# Adding DISTRO_FEATURE wifi
+DISTRO_F="DISTRO_FEATURES:append = \" wifi\""
+
+cat conf/local.conf | grep "${DISTRO_F}" > /dev/null
+local_distro_info=$?
+
+if [ $local_distro_info -ne 0 ];then
+    echo "Append ${DISTRO_F} in the local.conf file"
+	echo ${DISTRO_F} >> conf/local.conf
+else
+	echo "${DISTRO_F} already exists in the local.conf file"
+fi
+
+# Adding firmware support for wifi
+IMAGE_ADD="IMAGE_INSTALL:append = \"wpa-supplicant\""
+
+cat conf/local.conf | grep "${IMAGE_ADD}" > /dev/null
+local_imgadd_info=$?
+
+if [ $local_imgadd_info -ne 0 ];then
+    echo "Append ${IMAGE_ADD} in the local.conf file"
+	echo ${IMAGE_ADD} >> conf/local.conf
+else
+	echo "${IMAGE_ADD} already exists in the local.conf file"
+fi
+
+################################################################
+# Description : Adding meta-oe layer.
+# Author : Maanas Makam Dileep Kumar
+# Date : 04/14/23
+################################################################
+bitbake-layers show-layers | grep "meta-oe" > /dev/null
+layer_oe_info=$?
+
+if [ $layer_oe_info -ne 0 ];then
+	echo "Adding meta-oe layer"
+	bitbake-layers add-layer ../poky/meta-openembedded/meta-oe
+else
+	echo "meta-oe layer already exists"
+fi
+
+################################################################
+# Description : Adding meta-python layer.
+# Author : Maanas Makam Dileep Kumar
+# Date : 04/14/23
+################################################################
+bitbake-layers show-layers | grep "meta-python" > /dev/null
+layer_python_info=$?
+
+if [ $layer_python_info -ne 0 ];then
+	echo "Adding meta-python layer"
+	bitbake-layers add-layer ../poky/meta-openembedded/meta-python
+else
+	echo "meta-python layer already exists"
+fi
+
+################################################################
+# Description : Adding meta-networking layer.
+# Author : Maanas Makam Dileep Kumar
+# Date : 04/14/23
+################################################################
+bitbake-layers show-layers | grep "meta-networking" > /dev/null
+layer_networking_info=$?
+
+if [ $layer_networking_info -ne 0 ];then
+	echo "Adding meta-networking layer"
+	bitbake-layers add-layer ../poky/meta-openembedded/meta-networking
+else
+	echo "meta-networking layer already exists"
+fi
+
 set -e
 bitbake core-image-aesd
