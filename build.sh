@@ -64,7 +64,7 @@ layer_raspberrypi_info=$?
 
 if [ $layer_raspberrypi_info -ne 0 ];then
 	echo "Adding meta-raspberrypi layer"
-	bitbake-layers add-layer ../poky/meta-raspberrypi
+	bitbake-layers add-layer ../meta-raspberrypi
 else
 	echo "meta-raspberrypi layer already exists"
 fi
@@ -110,7 +110,7 @@ layer_oe_info=$?
 
 if [ $layer_oe_info -ne 0 ];then
 	echo "Adding meta-oe layer"
-	bitbake-layers add-layer ../poky/meta-openembedded/meta-oe
+	bitbake-layers add-layer ../meta-openembedded/meta-oe
 else
 	echo "meta-oe layer already exists"
 fi
@@ -125,7 +125,7 @@ layer_python_info=$?
 
 if [ $layer_python_info -ne 0 ];then
 	echo "Adding meta-python layer"
-	bitbake-layers add-layer ../poky/meta-openembedded/meta-python
+	bitbake-layers add-layer ../meta-openembedded/meta-python
 else
 	echo "meta-python layer already exists"
 fi
@@ -140,7 +140,7 @@ layer_networking_info=$?
 
 if [ $layer_networking_info -ne 0 ];then
 	echo "Adding meta-networking layer"
-	bitbake-layers add-layer ../poky/meta-openembedded/meta-networking
+	bitbake-layers add-layer ../meta-openembedded/meta-networking
 else
 	echo "meta-networking layer already exists"
 fi
