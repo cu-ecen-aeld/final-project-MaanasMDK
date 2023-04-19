@@ -88,7 +88,7 @@ else
 fi
 
 # Adding firmware support for wifi
-IMAGE_ADD="IMAGE_INSTALL:append = \"wpa-supplicant\""
+IMAGE_ADD="IMAGE_INSTALL:append = \"wpa-supplicant opencv libopencv-core libopencv-imgproc\""
 
 cat conf/local.conf | grep "${IMAGE_ADD}" > /dev/null
 local_imgadd_info=$?
