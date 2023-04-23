@@ -8,7 +8,7 @@ SRC_URI = "git://git@github.com/cu-ecen-aeld/final-project-nihalthirunakarasu;pr
 
 PV = "1.0+git${SRCPV}"
 # TODO: set to reference a specific commit hash in your assignment repo
-SRCREV = "5b606fb9ac16409758c4b1c146531b0e23ed6082"
+SRCREV = "0491e4cd5b5611e63e3c1deed3d9dfe895c93e59"
 
 inherit pkgconfig
 DEPENDS = "opencv"
@@ -32,7 +32,7 @@ do_configure () {
 }
 
 do_compile () {
-	oe_runmake
+	oe_runmake -I=${includedir}/opencv4
 }
 
 do_install () {
