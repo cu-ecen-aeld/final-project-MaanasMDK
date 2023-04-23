@@ -11,7 +11,7 @@ PV = "1.0+git${SRCPV}"
 SRCREV = "0491e4cd5b5611e63e3c1deed3d9dfe895c93e59"
 
 inherit pkgconfig
-DEPENDS = "opencv"
+DEPENDS = "pkgconfig opencv"
 RDEPENDS_${PN} = "libopencv-core libopencv-imgproc libopencv-highgui libopencv-videoio libopencv-imgcodecs libopencv-gapi"
 
 # This sets your staging directory based on WORKDIR, where WORKDIR is defined at 
@@ -32,7 +32,8 @@ do_configure () {
 }
 
 do_compile () {
-	oe_runmake -I=${includedir}/opencv4
+	#oe_runmake -I=${includedir}/opencv4
+	${CXX} ${CXXFLAGS} ${LDFLAGS} ${S}/aesd_opencv.cpp `pkg-config --cflags opencv4` `pkg-config --libs opencv4` -o aesd_opencv
 }
 
 do_install () {
