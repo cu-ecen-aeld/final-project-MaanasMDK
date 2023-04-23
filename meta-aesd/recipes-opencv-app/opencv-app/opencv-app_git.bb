@@ -8,11 +8,11 @@ SRC_URI = "git://git@github.com/cu-ecen-aeld/final-project-nihalthirunakarasu;pr
 
 PV = "1.0+git${SRCPV}"
 # TODO: set to reference a specific commit hash in your assignment repo
-SRCREV = "14c24500ce19c760d1c4df50bbf2e86bf5f820c6"
+SRCREV = "5b606fb9ac16409758c4b1c146531b0e23ed6082"
 
 inherit pkgconfig
 DEPENDS = "opencv"
-RDEPENDS_${PN} = "libopencv-core libopencv-imgproc libopencv-highgui libopencv-videoio libopencv-imgcodecs"
+RDEPENDS_${PN} = "libopencv-core libopencv-imgproc libopencv-highgui libopencv-videoio libopencv-imgcodecs libopencv-gapi"
 
 # This sets your staging directory based on WORKDIR, where WORKDIR is defined at 
 # https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-WORKDIR
@@ -22,10 +22,10 @@ S = "${WORKDIR}/git/opencv_app"
 
 # TODO: Add the aesdsocket application and any other files you need to install
 # See https://git.yoctoproject.org/poky/plain/meta/conf/bitbake.conf?h=kirkstone
-#FILES:${PN} += "${bindir}/aesdsocket"
+FILES:${PN} += "${bindir}/aesd_opencv"
 # TODO: customize these as necessary for any libraries you need for your application
 # (and remove comment)
-TARGET_LDFLAGS += "-pthread -lrt -L/usr/lib -lopencv_core -lopencv_flann -lopencv_video -lrt -lstdc++fs -lpthread -lstdc++"
+TARGET_LDFLAGS += "-pthread -lrt -L/usr/lib -lopencv_core -lopencv_flann -lopencv_video -lrt -lstdc++fs -lstdc++ -lopencv_gapi"
 
 do_configure () {
 	:
