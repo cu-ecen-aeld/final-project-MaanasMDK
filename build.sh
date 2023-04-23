@@ -87,8 +87,13 @@ else
 	echo "${DISTRO_F} already exists in the local.conf file"
 fi
 
-# Adding firmware support for wifi
-IMAGE_ADD="IMAGE_INSTALL:append = \"wpa-supplicant opencv libopencv-core libopencv-imgproc\""
+# Adding firmware support for wifi, opencv, and Gstreamer
+IMAGE_ADD="IMAGE_INSTALL:append = \"wpa-supplicant opencv libopencv-core libopencv-imgproc
+									v4l-utils python3 ntp x264
+									fbida fbgrab ffmpeg imagemagick gstreamer1.0 
+									gstreamer1.0-plugins-good gstreamer1.0-plugins-base  
+									gstreamer1.0-plugins-ugly gstreamer1.0-libav gst-player 
+									gstreamer1.0-meta-base gst-examples gstreamer1.0-rtsp-server\""
 
 cat conf/local.conf | grep "${IMAGE_ADD}" > /dev/null
 local_imgadd_info=$?
@@ -98,6 +103,58 @@ if [ $local_imgadd_info -ne 0 ];then
 	echo ${IMAGE_ADD} >> conf/local.conf
 else
 	echo "${IMAGE_ADD} already exists in the local.conf file"
+fi
+
+################################################################
+# Description : Adding licencing information
+# Author : Maanas Makam Dileep Kumar
+# Date : 04/19/23
+################################################################
+LICENCE="LICENSE_FLAGS_ACCEPTED = \"commercial\""
+# LICENCE_APPEND="LICENSE:append = \" commercial_gstreamer1.0-plugins-ugly commercial_mpg123\""
+
+cat conf/local.conf | grep "${LICENCE}" > /dev/null
+local_licn_info=$?
+
+if [ $local_licn_info -ne 0 ];then
+    echo "Append ${LICENCE} in the local.conf file"
+	echo ${LICENCE} >> conf/local.conf
+	echo ${LICENCE_APPEND} >> conf/local.conf
+else
+	echo "${LICENCE} already exists in the local.conf file"
+fi
+
+# Adding required gstreamer Package_configs for x264 to local.conf file
+cat conf/local.conf | grep "x264" > /dev/null
+local_licn_info=$?
+
+if [ $local_licn_info -ne 0 ];then
+    echo "Append x264 PACKAGECONFIG to local.conf file"
+         echo "PACKAGECONFIG:append_pn-gstreamer1.0-plugins-ugly = \" x264\"" >> conf/local.conf
+else
+         echo " x264 package congigurations already exists in local.conf"
+fi
+
+# Adding required gstreamer Package_configs for voaacenc to local.conf file
+cat conf/local.conf | grep " voaacenc" > /dev/null
+local_licn_info=$?
+
+if [ $local_licn_info -ne 0 ];then
+    echo "Append voaacenc PACKAGECONFIG to local.conf file"
+         echo "PACKAGECONFIG:append_pn-gstreamer1.0-plugins-bad = \" voaacenc\"" >> conf/local.conf
+else
+         echo " voaacenc package congigurations already exists in local.conf"
+fi
+
+# Adding required gstreamer Package_configs for rtmp to local.conf file
+cat conf/local.conf | grep " rtmp" > /dev/null
+local_licn_info=$?
+
+if [ $local_licn_info -ne 0 ];then
+    echo "Append rtmp PACKAGECONFIG to local.conf file"
+         echo "PACKAGECONFIG:append_pn-gstreamer1.0-plugins-bad = \" rtmp\"" >> conf/local.conf
+else
+         echo " rtmp package congigurations already exists in local.conf"
 fi
 
 ################################################################
@@ -143,6 +200,36 @@ if [ $layer_networking_info -ne 0 ];then
 	bitbake-layers add-layer ../meta-openembedded/meta-networking
 else
 	echo "meta-networking layer already exists"
+fi
+
+################################################################
+# Description : Adding meta-multimedia layer.
+# Author : Maanas Makam Dileep Kumar
+# Date : 04/19/23
+################################################################
+bitbake-layers show-layers | grep "meta-multimedia" > /dev/null
+layer_multimedia_info=$?
+
+if [ $layer_multimedia_info -ne 0 ];then
+	echo "Adding meta-multimedia layer"
+	bitbake-layers add-layer ../meta-openembedded/meta-multimedia
+else
+	echo "meta-multimedia layer already exists"
+fi
+
+################################################################
+# Description : Adding meta-qt5 layer.
+# Author : Maanas Makam Dileep Kumar
+# Date : 04/19/23
+################################################################
+bitbake-layers show-layers | grep "meta-qt5" > /dev/null
+layer_qt5_info=$?
+
+if [ $layer_qt5_info -ne 0 ];then
+	echo "Adding meta-qt5 layer"
+	bitbake-layers add-layer ../meta-qt5
+else
+	echo "meta-qt5 layer already exists"
 fi
 
 set -e
