@@ -3,7 +3,9 @@ inherit core-image
 CORE_IMAGE_EXTRA_INSTALL += " openssh"
 CORE_IMAGE_EXTRA_INSTALL += " camera"
 CORE_IMAGE_EXTRA_INSTALL += " opencv-app"
-CORE_IMAGE_EXTRA_INSTALL += " gpio"
+CORE_IMAGE_EXTRA_INSTALL += " gpio x264"
+CORE_IMAGE_EXTRA_INSTALL += " ldd"
+CORE_IMAGE_EXTRA_INSTALL += " mosquitto mosquitto-clients"
 
 inherit extrausers
 # See https://docs.yoctoproject.org/singleindex.html#extrausers-bbclass

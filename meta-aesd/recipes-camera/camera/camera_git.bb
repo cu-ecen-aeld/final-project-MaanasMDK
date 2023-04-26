@@ -19,6 +19,7 @@ S = "${WORKDIR}/git/camera"
 # TODO: Add the aesdsocket application and any other files you need to install
 # See https://git.yoctoproject.org/poky/plain/meta/conf/bitbake.conf?h=kirkstone
 FILES:${PN} += "${bindir}/camera_driver"
+RDPENDS:${PN} = "gstreamer1.0 gstreamer1.0-libav gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gst-player gstreamer1.0-meta-base gst-examples gstreamer1.0-rtsp-server"
 
 # TODO: customize these as necessary for any libraries you need for your application
 # (and remove comment)

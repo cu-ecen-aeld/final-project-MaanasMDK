@@ -89,10 +89,11 @@ fi
 
 # Adding firmware support for wifi, opencv, and Gstreamer
 IMAGE_ADD="IMAGE_INSTALL:append = \"wpa-supplicant opencv libopencv-core libopencv-imgproc
-									v4l-utils python3 ntp x264
-									fbida fbgrab ffmpeg imagemagick gstreamer1.0 
-									gstreamer1.0-plugins-good gstreamer1.0-plugins-base  
-									gstreamer1.0-plugins-ugly gstreamer1.0-libav gst-player 
+									v4l-utils python3 ntp
+									fbida fbgrab ffmpeg imagemagick gstreamer1.0
+									gstreamer1.0-libav gstreamer1.0-plugins-base
+									gstreamer1.0-plugins-good gstreamer1.0-plugins-bad  
+									gstreamer1.0-plugins-ugly  gst-player 
 									gstreamer1.0-meta-base gst-examples gstreamer1.0-rtsp-server\""
 
 cat conf/local.conf | grep "${IMAGE_ADD}" > /dev/null
@@ -110,7 +111,7 @@ fi
 # Author : Maanas Makam Dileep Kumar
 # Date : 04/19/23
 ################################################################
-LICENCE="LICENSE_FLAGS_ACCEPTED = \"commercial\""
+LICENCE="LICENSE_FLAGS_ACCEPTED  = \"commercial commercial_gstreamer1.0-plugins-ugly\""
 # LICENCE_APPEND="LICENSE:append = \" commercial_gstreamer1.0-plugins-ugly commercial_mpg123\""
 
 cat conf/local.conf | grep "${LICENCE}" > /dev/null
@@ -119,7 +120,7 @@ local_licn_info=$?
 if [ $local_licn_info -ne 0 ];then
     echo "Append ${LICENCE} in the local.conf file"
 	echo ${LICENCE} >> conf/local.conf
-	echo ${LICENCE_APPEND} >> conf/local.conf
+	#echo ${LICENCE_APPEND} >> conf/local.conf
 else
 	echo "${LICENCE} already exists in the local.conf file"
 fi
@@ -130,7 +131,7 @@ local_licn_info=$?
 
 if [ $local_licn_info -ne 0 ];then
     echo "Append x264 PACKAGECONFIG to local.conf file"
-         echo "PACKAGECONFIG:append_pn-gstreamer1.0-plugins-ugly = \" x264\"" >> conf/local.conf
+         echo "PACKAGECONFIG:append:pn-gstreamer1.0-plugins-ugly = \" x264\"" >> conf/local.conf
 else
          echo " x264 package congigurations already exists in local.conf"
 fi
@@ -141,7 +142,7 @@ local_licn_info=$?
 
 if [ $local_licn_info -ne 0 ];then
     echo "Append voaacenc PACKAGECONFIG to local.conf file"
-         echo "PACKAGECONFIG:append_pn-gstreamer1.0-plugins-bad = \" voaacenc\"" >> conf/local.conf
+         echo "PACKAGECONFIG:append:pn-gstreamer1.0-plugins-bad = \" voaacenc\"" >> conf/local.conf
 else
          echo " voaacenc package congigurations already exists in local.conf"
 fi
@@ -152,7 +153,7 @@ local_licn_info=$?
 
 if [ $local_licn_info -ne 0 ];then
     echo "Append rtmp PACKAGECONFIG to local.conf file"
-         echo "PACKAGECONFIG:append_pn-gstreamer1.0-plugins-bad = \" rtmp\"" >> conf/local.conf
+         echo "PACKAGECONFIG:append:pn-gstreamer1.0-plugins-bad = \" rtmp\"" >> conf/local.conf
 else
          echo " rtmp package congigurations already exists in local.conf"
 fi
