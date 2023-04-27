@@ -6,6 +6,7 @@ CORE_IMAGE_EXTRA_INSTALL += " opencv-app"
 CORE_IMAGE_EXTRA_INSTALL += " gpio x264"
 CORE_IMAGE_EXTRA_INSTALL += " ldd"
 CORE_IMAGE_EXTRA_INSTALL += " mosquitto mosquitto-clients"
+CORE_IMAGE_EXTRA_INSTALL += " opencv-app-file"
 
 inherit extrausers
 # See https://docs.yoctoproject.org/singleindex.html#extrausers-bbclass
