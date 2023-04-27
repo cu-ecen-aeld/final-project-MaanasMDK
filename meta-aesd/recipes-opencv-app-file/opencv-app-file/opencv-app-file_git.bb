@@ -18,11 +18,11 @@ RDEPENDS_${PN} = "libopencv-core libopencv-imgproc libopencv-highgui libopencv-v
 # https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-WORKDIR
 # We reference the "server" directory here to build from the "server" directory
 # in your assignments repo
-S = "${WORKDIR}/git/opencv_app"
+S = "${WORKDIR}/git/opencv_app_file"
 
 # TODO: Add the aesdsocket application and any other files you need to install
 # See https://git.yoctoproject.org/poky/plain/meta/conf/bitbake.conf?h=kirkstone
-FILES:${PN} += "${bindir}/aesd_opencv"
+FILES:${PN} += "${bindir}/aesd_opencv_file"
 
 # TODO: customize these as necessary for any libraries you need for your application
 # (and remove comment)
@@ -34,7 +34,7 @@ do_configure () {
 
 do_compile () {
 	#oe_runmake -I=${includedir}/opencv4
-	${CXX} ${CXXFLAGS} ${LDFLAGS} ${S}/aesd_opencv.cpp `pkg-config --cflags opencv4` `pkg-config --libs opencv4` -o aesd_opencv
+	${CXX} ${CXXFLAGS} ${LDFLAGS} ${S}/aesd_opencv_file.cpp `pkg-config --cflags opencv4` `pkg-config --libs opencv4` -o aesd_opencv_file
 }
 
 do_install () {
@@ -46,5 +46,6 @@ do_install () {
 	# https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-S
 	# See example at https://github.com/cu-ecen-aeld/ecen5013-yocto/blob/ecen5013-hello-world/meta-ecen5013/recipes-ecen5013/ecen5013-hello-world/ecen5013-hello-world_git.bb
 	install -d ${D}${bindir}
-	install -m 0755 ${S}/aesd_opencv ${D}${bindir}
+	install -m 0755 ${S}/aesd_opencv_file ${D}${bindir}
+	install -m 0755 ${WORKDIR}/git/test_videos/test.mp4 ${D}${bindir}
 }
