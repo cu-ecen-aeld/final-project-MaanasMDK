@@ -8,17 +8,13 @@ SRC_URI = "git://git@github.com/cu-ecen-aeld/final-project-nihalthirunakarasu;pr
 
 PV = "1.0+git${SRCPV}"
 # TODO: set to reference a specific commit hash in your assignment repo
-SRCREV = "6147a47962aa19354d0c8517b107331314733709"
+SRCREV = "5a9ac2618f4d571bae445ec33ada4f51270698f2"
 
 # This sets your staging directory based on WORKDIR, where WORKDIR is defined at 
 # https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-WORKDIR
 # We reference the "server" directory here to build from the "server" directory
 # in your assignments repo
-S = "${WORKDIR}/git/mqtt-subscriber"
-
-# TODO: Add the aesdsocket application and any other files you need to install
-# See https://git.yoctoproject.org/poky/plain/meta/conf/bitbake.conf?h=kirkstone
-#FILES:${PN} += "${bindir}/mqtt-subscriber.sh"
+S = "${WORKDIR}/git"
 
 do_install () {
 	# TODO: Install your binaries/scripts here.
@@ -29,5 +25,6 @@ do_install () {
 	# https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-S
 	# See example at https://github.com/cu-ecen-aeld/ecen5013-yocto/blob/ecen5013-hello-world/meta-ecen5013/recipes-ecen5013/ecen5013-hello-world/ecen5013-hello-world_git.bb
 	install -d ${D}${bindir}
-	install -m 0755 ${S}/mqtt-subscriber.sh ${D}${bindir}
+	install -m 0755 ${S}/mqtt-subscriber/mqtt-subscriber.sh ${D}${bindir}
+	install -m 0755 ${S}/mqtt-publisher/mqtt-publisher.sh ${D}${bindir}
 }
