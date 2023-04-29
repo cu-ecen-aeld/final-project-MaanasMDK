@@ -28,33 +28,6 @@ else
 fi
 
 ################################################################
-# Description : Set the custom image output types
-# Author : Maanas Makam Dileep Kumar
-# Date : 04/13/23
-################################################################
-IMAGE="IMAGE_FSTYPES = \"tar.xz ext3 rpi-sdimg\""
-
-cat conf/local.conf | grep "${IMAGE}" > /dev/null
-local_image_info=$?
-
-if [ $local_image_info -ne 0 ];then 
-    echo "Append ${IMAGE} in the local.conf file"
-	echo ${IMAGE} >> conf/local.conf
-else
-	echo "${IMAGE} already exists in the local.conf file"
-fi
-
-bitbake-layers show-layers | grep "meta-aesd" > /dev/null
-layer_info=$?
-
-if [ $layer_info -ne 0 ];then
-	echo "Adding meta-aesd layer"
-	bitbake-layers add-layer ../meta-aesd
-else
-	echo "meta-aesd layer already exists"
-fi
-
-################################################################
 # Description : Adding meta-raspberrypi layer.
 # Author : Maanas Makam Dileep Kumar
 # Date : 04/13/23
@@ -75,36 +48,36 @@ fi
 # Date : 04/14/23
 ################################################################
 # Adding DISTRO_FEATURE wifi
-DISTRO_F="DISTRO_FEATURES:append = \" wifi\""
+# DISTRO_F="DISTRO_FEATURES:append = \" wifi\""
 
-cat conf/local.conf | grep "${DISTRO_F}" > /dev/null
-local_distro_info=$?
+# cat conf/local.conf | grep "${DISTRO_F}" > /dev/null
+# local_distro_info=$?
 
-if [ $local_distro_info -ne 0 ];then
-    echo "Append ${DISTRO_F} in the local.conf file"
-	echo ${DISTRO_F} >> conf/local.conf
-else
-	echo "${DISTRO_F} already exists in the local.conf file"
-fi
+# if [ $local_distro_info -ne 0 ];then
+#     echo "Append ${DISTRO_F} in the local.conf file"
+# 	echo ${DISTRO_F} >> conf/local.conf
+# else
+# 	echo "${DISTRO_F} already exists in the local.conf file"
+# fi
 
-# Adding firmware support for wifi, opencv, and Gstreamer
-IMAGE_ADD="IMAGE_INSTALL:append = \"wpa-supplicant opencv libopencv-core libopencv-imgproc
-									v4l-utils python3 ntp
-									fbida fbgrab ffmpeg imagemagick gstreamer1.0
-									gstreamer1.0-libav gstreamer1.0-plugins-base
-									gstreamer1.0-plugins-good gstreamer1.0-plugins-bad  
-									gstreamer1.0-plugins-ugly  gst-player 
-									gstreamer1.0-meta-base gst-examples gstreamer1.0-rtsp-server\""
+# # Adding firmware support for wifi, opencv, and Gstreamer
+# IMAGE_ADD="IMAGE_INSTALL:append = \"wpa-supplicant opencv libopencv-core libopencv-imgproc
+# 									v4l-utils python3 ntp
+# 									fbida fbgrab ffmpeg imagemagick gstreamer1.0
+# 									gstreamer1.0-libav gstreamer1.0-plugins-base
+# 									gstreamer1.0-plugins-good gstreamer1.0-plugins-bad  
+# 									gstreamer1.0-plugins-ugly  gst-player 
+# 									gstreamer1.0-meta-base gst-examples gstreamer1.0-rtsp-server\""
 
-cat conf/local.conf | grep "${IMAGE_ADD}" > /dev/null
-local_imgadd_info=$?
+# cat conf/local.conf | grep "${IMAGE_ADD}" > /dev/null
+# local_imgadd_info=$?
 
-if [ $local_imgadd_info -ne 0 ];then
-    echo "Append ${IMAGE_ADD} in the local.conf file"
-	echo ${IMAGE_ADD} >> conf/local.conf
-else
-	echo "${IMAGE_ADD} already exists in the local.conf file"
-fi
+# if [ $local_imgadd_info -ne 0 ];then
+#     echo "Append ${IMAGE_ADD} in the local.conf file"
+# 	echo ${IMAGE_ADD} >> conf/local.conf
+# else
+# 	echo "${IMAGE_ADD} already exists in the local.conf file"
+# fi
 
 ################################################################
 # Description : Adding licencing information
@@ -125,38 +98,38 @@ else
 	echo "${LICENCE} already exists in the local.conf file"
 fi
 
-# Adding required gstreamer Package_configs for x264 to local.conf file
-cat conf/local.conf | grep "x264" > /dev/null
-local_licn_info=$?
+# # Adding required gstreamer Package_configs for x264 to local.conf file
+# cat conf/local.conf | grep "x264" > /dev/null
+# local_licn_info=$?
 
-if [ $local_licn_info -ne 0 ];then
-    echo "Append x264 PACKAGECONFIG to local.conf file"
-         echo "PACKAGECONFIG:append:pn-gstreamer1.0-plugins-ugly = \" x264\"" >> conf/local.conf
-else
-         echo " x264 package congigurations already exists in local.conf"
-fi
+# if [ $local_licn_info -ne 0 ];then
+#     echo "Append x264 PACKAGECONFIG to local.conf file"
+#          echo "PACKAGECONFIG:append:pn-gstreamer1.0-plugins-ugly = \" x264\"" >> conf/local.conf
+# else
+#          echo " x264 package congigurations already exists in local.conf"
+# fi
 
-# Adding required gstreamer Package_configs for voaacenc to local.conf file
-cat conf/local.conf | grep " voaacenc" > /dev/null
-local_licn_info=$?
+# # Adding required gstreamer Package_configs for voaacenc to local.conf file
+# cat conf/local.conf | grep " voaacenc" > /dev/null
+# local_licn_info=$?
 
-if [ $local_licn_info -ne 0 ];then
-    echo "Append voaacenc PACKAGECONFIG to local.conf file"
-         echo "PACKAGECONFIG:append:pn-gstreamer1.0-plugins-bad = \" voaacenc\"" >> conf/local.conf
-else
-         echo " voaacenc package congigurations already exists in local.conf"
-fi
+# if [ $local_licn_info -ne 0 ];then
+#     echo "Append voaacenc PACKAGECONFIG to local.conf file"
+#          echo "PACKAGECONFIG:append:pn-gstreamer1.0-plugins-bad = \" voaacenc\"" >> conf/local.conf
+# else
+#          echo " voaacenc package congigurations already exists in local.conf"
+# fi
 
-# Adding required gstreamer Package_configs for rtmp to local.conf file
-cat conf/local.conf | grep " rtmp" > /dev/null
-local_licn_info=$?
+# # Adding required gstreamer Package_configs for rtmp to local.conf file
+# cat conf/local.conf | grep " rtmp" > /dev/null
+# local_licn_info=$?
 
-if [ $local_licn_info -ne 0 ];then
-    echo "Append rtmp PACKAGECONFIG to local.conf file"
-         echo "PACKAGECONFIG:append:pn-gstreamer1.0-plugins-bad = \" rtmp\"" >> conf/local.conf
-else
-         echo " rtmp package congigurations already exists in local.conf"
-fi
+# if [ $local_licn_info -ne 0 ];then
+#     echo "Append rtmp PACKAGECONFIG to local.conf file"
+#          echo "PACKAGECONFIG:append:pn-gstreamer1.0-plugins-bad = \" rtmp\"" >> conf/local.conf
+# else
+#          echo " rtmp package congigurations already exists in local.conf"
+# fi
 
 ################################################################
 # Description : Adding meta-oe layer.

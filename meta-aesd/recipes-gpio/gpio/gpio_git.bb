@@ -9,17 +9,16 @@
 # represented as "Unknown" below, you will need to check them yourself:
 #   LICENSE
 LICENSE = "MIT"
-#LIC_FILES_CHKSUM = "file://LICENSE;md5=f098732a73b5f6f3430472f5b094ffdb"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
-SRC_URI = "git://git@github.com/cu-ecen-aeld/final-project-KhyatiSatta;protocol=ssh;branch=main \
+SRC_URI = "git://git@github.com/MaanasMDK/RPI_GPIO_Driver;protocol=ssh;branch=master \
 file://S98lddmodules-gpio-start-stop.sh"
 
 # Modify these as desired
 PV = "1.0+git${SRCPV}"
-SRCREV = "af08560aae357d7b52c8c622f6988ec00b6b7a05"
+SRCREV = "e225a9ef8ba02afbcf4790d57f78fefba5fd86c7"
 
-S = "${WORKDIR}/git/gpio"
+S = "${WORKDIR}/git/Linux/Device_Driver/GPIO-in-Linux-Device-Driver"
 
 inherit module
 
