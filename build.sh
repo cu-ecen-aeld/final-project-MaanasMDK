@@ -95,6 +95,22 @@ else
 fi
 
 ################################################################
+# Description : Adding meta-aesd layer.
+# Author : Maanas Makam Dileep Kumar
+# Date : 04/14/23
+################################################################
+bitbake-layers show-layers | grep "meta-aesd" > /dev/null
+layer_info=$?
+
+if [ $layer_info -ne 0 ];then
+	echo "Adding meta-aesd layer"
+	bitbake-layers add-layer ../meta-aesd
+else
+	echo "meta-aesd layer already exists"
+fi
+
+
+################################################################
 # Description : Adding meta-oe layer.
 # Author : Maanas Makam Dileep Kumar
 # Date : 04/14/23
