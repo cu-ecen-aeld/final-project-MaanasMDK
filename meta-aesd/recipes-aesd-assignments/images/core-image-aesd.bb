@@ -28,6 +28,12 @@ DISTRO_FEATURES:append = " wifi"
 # Adding wifi support in firmware
 IMAGE_INSTALL:append = "wpa-supplicant"
 
+# Adding the required dependencies for opencv
+IMAGE_INSTALL:append = " opencv libopencv-core libopencv-imgproc"
+
+# Adding the required dependencies for gstreamer
+IMAGE_INSTALL:append = " v4l-utils python3 ntp fbida fbgrab ffmpeg imagemagick gstreamer1.0 gstreamer1.0-libav gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gst-player gstreamer1.0-meta-base gst-examples gstreamer1.0-rtsp-server"
+
 inherit extrausers
 # See https://docs.yoctoproject.org/singleindex.html#extrausers-bbclass
 # We set a default password of root to match our busybox instance setup
